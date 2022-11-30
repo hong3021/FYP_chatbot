@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+{% extends "base.html" %}
+{% block title %}Home2{% endblock %}
+
+{% block content %}
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.min.css') }}">
         <style>
@@ -58,31 +57,12 @@
       }
     </style>
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/signin.css') }}">
-</head>
-<body class="text-center">
+
+
 
 <main class="form-signin w-100 m-auto">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-  {% for category, message in messages %}
-    {% if category == 'error' %}
-  <div class="alert alert-danger alter-dismissable fade show" role="alert">
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert">
-      <span aria-hidden="true">&times</span>
-    </button>
-  </div>
-    {% else %}
-  <div class="alert alert-success alter-dismissable fade show" role="alert">
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert">
-      <span aria-hidden="true">&times</span>
-    </button>
-  </div>
-    {% endif %}
-  {% endfor %}
-{% endif %}
-{% endwith %}
+  <br>
+  <br>
   <form method="post">
     <img class="mb-4" src="{{ url_for('static', filename='images/RobotcatLOGO.png') }}" alt="" width="80%" height="60%">
     <h1 class="h4 mb-3 fw-normal">Sign in</h1>
@@ -96,17 +76,14 @@
       <label for="email">Password</label>
     </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
+<!--    <div class="checkbox mb-3">-->
+<!--      <label>-->
+<!--        <input type="checkbox" value="remember-me"> Remember me-->
+<!--      </label>-->
+<!--    </div>-->
+    <br>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; mecXchat 2017–2022</p>
   </form>
 </main>
-
-
-
-  </body>
-</html>
+{% endblock %}

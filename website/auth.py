@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .model import User
+from .model import User, Admin
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, login_required, current_user, logout_user
 
 auth = Blueprint('auth', __name__)
 
@@ -15,18 +16,21 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 flash('logged in successfuly', category='success')
+                login_user(user, remember=True )
                 return redirect(url_for('views.home'))
             else:
-                flash('incorrect password', category='error')
+                flash('Incorrect password', category='error')
         else:
             flash('Email does not exist', category='error')
 
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 
 @auth.route('/auth/logout')
+@login_required
 def logout():
-    return '<h1>loguot</h1>'
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 
 @auth.route('/auth/Signup', methods=['GET', 'POST'])
@@ -52,5 +56,25 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             flash('Account Created', category='success')
+            login_user(user, remember=True)
             return redirect(url_for('views.home'))
-    return render_template("signup.html")
+    return render_template("signup.html", user=current_user)
+
+
+@auth.route('/auth/admin', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        admin = Admin.query.filter_by(username=username).first()
+        if admin:
+            if check_password_hash(admin.password, password):
+                flash('logged in successfuly', category='success')
+                login_user(admin, remember=True )
+                return redirect(url_for('admin.home'))
+            else:
+                flash('Incorrect password', category='error')
+        else:
+            flash('Username does not exist', category='error')
+
+    return render_template("Adminlogin.html", user=current_user)

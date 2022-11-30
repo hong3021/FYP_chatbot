@@ -30,16 +30,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbar">
         <div class="navbar-nav">
-            <!--if else-->
             <a class="nav-item nav-link" id="home" href="/">Home</a>
+            {% if user.is_authenticated%}
+
             <a class="nav-item nav-link" id="OSINT" href="/">OSINT</a>
 
             <a class="nav-item nav-link" id="Chatbot" href="/chatBox">Chatbot</a>
-
-            <a align="right" class="nav-item nav-link" id="SignUp" href="/auth/Signup">SignUp</a>
-            <a align="right" class="nav-item nav-link" id="login" href="/auth/login">Login</a>
-
-            <!--end else-->
+            <a  class="nav-item nav-link" id="logout" href="/auth/logout">logout</a>
+            {% else %}
+            <a  class="nav-item nav-link" id="SignUp" href="/auth/Signup">SignUp</a>
+            <a  class="nav-item nav-link" id="login" href="/auth/login">Login</a>
+            {% endif%}
         </div>
     </div>
 </nav>

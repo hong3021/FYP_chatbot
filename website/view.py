@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify
 from website.chatbot import response_message
-from .model import User
+from flask_login import login_required, current_user
 
 import website.Osintgram as osint
 import json
@@ -15,8 +15,9 @@ command = False
 
 
 @views.route('/')
+# @login_required
 def home():
-    return render_template('home.html')
+    return render_template('home.html', user=current_user)
 
 
 @views.post("/predict")
