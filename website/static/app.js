@@ -66,16 +66,31 @@ class Chatbox {
     }
     updateChatText(chatbox) {
         var html = '';
-        this.messages.slice().reverse().forEach(function(item, index) {
+            this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "Sam")
             {
-                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
+                if(item.message.full_name){
+                    html += '<div class="messages__item messages__item--visitor"><ul>'
+                    html += '<li>'+ item.message.full_name + '</li>'
+                    html += '<li> FOLLOWER : '+ item.message.edge_followed_by + '</li>'
+                    html += '<li> FOLLOWING : '+ item.message.edge_follow + '</li>'
+                    html += '</div>'
+                }
+                else{
+                    html += '<div class="messages__item messages__item--visitor">' + item.message+ '</div>'
+                }
+
             }
+
             else
             {
                 html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
             }
-          });
+          }
+
+          );
+
+
 
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;

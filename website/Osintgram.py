@@ -33,7 +33,9 @@ class Osintgram:
     writeFile = False
     jsonDump = False
     cli_mode = False
+    # output_dir = "output"
     output_dir = "output"
+    output_pro_dir = "website/static/images/output"
 
     def __init__(self, target, is_file, is_json, is_cli, output_dir, clear_cookies):
         self.output_dir = output_dir or self.output_dir
@@ -928,7 +930,7 @@ class Osintgram:
                 URL = data["hd_profile_pic_versions"][items - 1]['url']
 
             if URL != "":
-                end = self.output_dir + "/" + self.target + "_propic.jpg"
+                end = self.output_pro_dir + "/" + self.target + "_propic.jpg"
                 urllib.request.urlretrieve(URL, end)
                 print("Target propic saved in output folder\n")
 

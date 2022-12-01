@@ -6,6 +6,7 @@ db = SQLAlchemy()
 DB_NAME = 'database.db'
 
 
+
 def create_app():
     app = Flask(__name__)
 
@@ -24,7 +25,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(admin, url_prefix='/')
 
-    from .model import User, Admin
+    from .model import User
 
     with app.app_context():
         db.create_all()

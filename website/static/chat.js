@@ -1,19 +1,17 @@
-class Chatbot {
+
+class Chatbox {
     constructor() {
         this.args = {
-            openButton: document.querySelector('.chatbox__button'),
-            chatBox: document.querySelector('.chatbox__support'),
+
+//            openButton: document.querySelector('.chatbox__button'),
+            chatBox: document.querySelector('.chatbox_support'),
             sendButton: document.querySelector('.send__button')
         }
 
-        this.state = false;
         this.messages = [];
     }
     display() {
-        const {openButton, chatBox, sendButton} = this.args;
-
-        openButton.addEventListener('click', () => this.toggleState(chatBox))
-
+        const { chatBox, sendButton} = this.args;
         sendButton.addEventListener('click', () => this.onSendButton(chatBox))
 
         const node = chatBox.querySelector('input');
@@ -23,16 +21,16 @@ class Chatbot {
             }
         })
     }
-    toggleState(chatbox) {
-        this.state = !this.state;
-
-        // show or hides the box
-        if(this.state) {
-            chatbox.classList.add('chatbox--active')
-        } else {
-            chatbox.classList.remove('chatbox--active')
-        }
-    }
+//    toggleState(chatbox) {
+//        this.state = !this.state;
+//
+//        // show or hides the box
+//        if(this.state) {
+//            chatbox.classList.add('chatbox--active')
+//        } else {
+//            chatbox.classList.remove('chatbox--active')
+//        }
+//    }
     onSendButton(chatbox) {
         var textField = chatbox.querySelector('input');
         let text1 = textField.value
@@ -69,7 +67,16 @@ class Chatbot {
         this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "Sam")
             {
-                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
+                 if(item.message.full_name){
+                    html += '<div class="messages__item messages__item--visitor"><ul>'
+                    html += '<li>'+ item.message.full_name + '</li>'
+                    html += '<li> FOLLOWER : '+ item.message.edge_followed_by + '</li>'
+                    html += '<li> FOLLOWING : '+ item.message.edge_follow + '</li>'
+                    html += '</div>'
+                }
+                else{
+                    html += '<div class="messages__item messages__item--visitor">' + item.message+ '</div>'
+                }
             }
             else
             {
@@ -80,10 +87,7 @@ class Chatbot {
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
     }
-    timeout(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
 
 }
-const chatbot = new Chatbot();
-Chatbot.display();
+const chatbox = new Chatbox();
+chatbox.display();

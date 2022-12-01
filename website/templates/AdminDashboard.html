@@ -3,5 +3,56 @@
 {% block title2 %}Dashboard{% endblock %}
 
 {% block content %}
+<style>
+    .legend{
+        border-radius: 4px;
+        padding: 15px;
+        width: 150px;
+        float: left;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .center{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+    .card-body{
+        background-color:ForestGreen;
+        margin : 15px;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    .error{
+        background-color: FireBrick;
+    }
+
+</style>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="card-body user" onclick="location.href = '/admin/user';">
+
+        <div class="legend">
+            <img class="center" src="{{ url_for('static', filename='images/people.svg') }}" />
+        </div>
+        <h3> Users : {{ user_amount }}</h3>
+
+    </div>
+    {%if file_exists%}
+        <div class="card-body file" onclick="location.href = '/admin/chatbot';">
+            <div class="legend">
+                <img class="center" src="{{ url_for('static', filename='images/filetype-js.svg') }}" />
+            </div>
+            <h3> Chat Script: ok</h3>
+        </div>
+     {% else %}
+        <div class="card-body error file" onclick="location.href = '/admin/chatbot';">
+            <div class="legend">
+                <img class="center" src="{{ url_for('static', filename='images/filetype-js.svg') }}" />
+            </div>
+            <h3> Chat Script: Error</h3>
+        </div>
+    {% endif %}
+</div>
 
 {% endblock %}
