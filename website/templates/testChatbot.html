@@ -1,0 +1,36 @@
+{% extends "adminBase.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block title2 %}Chatbot{% endblock %}
+
+{% block content %}
+<style>
+    .chatbox__messages{
+        margin-top: auto;
+        display: flex;
+        overflow-y: scroll;
+        flex-direction: column-reverse;
+        width: 300px;
+        height: 400px;
+
+    }
+
+</style>
+    <div class="container">
+    <div class="chatbox">
+        <div class="chatbox__support">
+
+            <div class="chatbox__messages">
+                <div></div>
+            </div>
+            <div class="chatbox__footer">
+                <input type="text" placeholder="Write a message...">
+                <button class="chatbox__send--footer send__button">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+ <script>
+        $SCRIPT_ROOT = {{ request.script_root|tojson }};
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='testChatbot.js') }}"></script>
+{% endblock %}
