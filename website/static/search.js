@@ -57,7 +57,7 @@ class SearchBox {
         html += '<div class="follower">FOLLOWER :' + this.result.edge_followed_by + '</div>';
         html += '<div class="follower">FOLLOWING :' + this.result.edge_follow + '</div>';
 
-        html += '<div class="biography"> BIO' + this.result.biography + '</div>';
+        html += '<div class="biography"> BIO :' + this.result.biography + '</div>';
         html += '</div>'
         const searchboxresult = searchBox.querySelector('.search__result');
 
