@@ -9,7 +9,10 @@ from pathlib import Path
 import requests
 import ssl
 
+# testing
 # import config
+
+# webapp
 import website.config as config
 
 from geopy.geocoders import Nominatim
@@ -33,8 +36,9 @@ class Osintgram:
     writeFile = False
     jsonDump = False
     cli_mode = False
+
     # output_dir = "output"
-    output_dir = "output"
+    output_dir = "website/output"
     output_pro_dir = "website/static/images/output"
 
     def __init__(self, target, is_file, is_json, is_cli, output_dir, clear_cookies):
@@ -152,7 +156,9 @@ class Osintgram:
 
             for address, time in sort_addresses:
                 t.add_row([str(i), address, time])
-
+                if i == 10:
+                    print('is over 10')
+                    break
                 if self.jsonDump:
                     addr = {
                         'address': address,
@@ -164,17 +170,18 @@ class Osintgram:
 
             if self.writeFile:
                 file_name = self.output_dir + "/" + self.target + "_addrs.txt"
-                file = open(file_name, "w")
+                file = open(file_name, "w", encoding="utf-8")
                 file.write(str(t))
                 file.close()
 
             if self.jsonDump:
                 json_data['address'] = addrs_list
                 json_file_name = self.output_dir + "/" + self.target + "_addrs.json"
-                with open(json_file_name, 'w') as f:
+                with open(json_file_name, 'w', encoding="utf-8") as f:
                     json.dump(json_data, f)
 
             print(t)
+            return addrs_list
         else:
             print("Sorry! No results found :-(\n")
 
@@ -578,6 +585,7 @@ class Osintgram:
                 # json_file_name = self.output_dir + "/" + self.target + "_info.json"
                 # with open(json_file_name, 'w') as f:
                 #     json.dump(user, f)
+
                 # modified
                 return user
 

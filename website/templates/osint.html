@@ -4,8 +4,8 @@
 {% block content %}
 <style>
     .img_profile{
-        height: 400px;
-        width: 400px;
+        height: 280px;
+        width: 280px;
      }
 
 </style>
@@ -13,8 +13,10 @@
 
         <div class="search_support">
             <div class="search_bar">
-                    <input type="text" placeholder="Write a message...">
-                    <button class="search__button">Search</button>
+                    <input type="text" class="user__input" placeholder="Write a message...">
+                    <button class="search__button">Search</button><br>
+                    <input type="checkbox" class="chack__address" id="chack_address">
+                    <label for="chack_address"> Get post address </label><br>
             </div>
             <div class="search__result">
                 <div></div>

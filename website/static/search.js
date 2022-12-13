@@ -18,9 +18,11 @@ class SearchBox {
         })
     }
     onSendButton(searchBox) {
-
-        var textField = searchBox.querySelector('input');
+        alert('IT MAKE TAKE TIME TO SEARCH')
+        var textField = searchBox.querySelector('.user__input');
         let text1 = textField.value
+        var address = searchBox.querySelector('.chack__address');
+        let address_status = address.checked;
         this.username  = text1
         if (text1 === "") {
             return;
@@ -28,7 +30,7 @@ class SearchBox {
 
         fetch('http://127.0.0.1:5000/search', {
             method: 'POST',
-            body: JSON.stringify({ username: text1 }),
+            body: JSON.stringify({ username: text1, find_address: address_status }),
             mode: 'cors',
             headers: {
               'Content-Type': 'application/json'
@@ -50,14 +52,19 @@ class SearchBox {
 
     updateSearchText(searchBox) {
         var html = '<div class="result_boby">'
-        alert('done')
         var image_url = '<img class="img_profile" src="static/images/output/'+ this.username +'_propic.jpg"/>';
         html += '<div class="img_view">'+ image_url + '</div>';
-        html += '<div class="Name"> <h3> ' + this.result.full_name + '</h3> </div>';
+        html += '<div class="Name"> <h3> ' + this.result.full_name + '<a href="https://www.instagram.com/'+ this.username + '" target="_blank"> [' + this.username +']</a></h3> </div>';
         html += '<div class="follower">FOLLOWER :' + this.result.edge_followed_by + '</div>';
         html += '<div class="follower">FOLLOWING :' + this.result.edge_follow + '</div>';
 
         html += '<div class="biography"> BIO :' + this.result.biography + '</div>';
+        if (this.result.address){
+            html += '<div class="address_title"><h3> Leatest Address </h3></div>';
+            for (let i in this.result.address){
+                html += '<div class="address">'+ i + ". " + this.result.address[i].address + ' -['+ this.result.address[i].time + ']</div>';
+            }
+        }
         html += '</div>'
         const searchboxresult = searchBox.querySelector('.search__result');
 

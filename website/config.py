@@ -3,7 +3,9 @@ import sys
 
 try:
     config = configparser.ConfigParser(interpolation=None)
+    # testing
     # config.read("src/credentials.ini")
+    # webapp
     config.read("website/src/credentials.ini")
 except FileNotFoundError:
     print('Error: file "credentials.ini" not found!\n')

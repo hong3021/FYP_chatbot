@@ -1,6 +1,6 @@
-{% extends "adminBase.html" %}
-{% block title %}Dashboard{% endblock %}
-{% block title2 %}Chatbot{% endblock %}
+{% extends "admin/adminBase.html" %}
+{% block title %}Chat{% endblock %}
+{% block title2 %}Chatbot Setting{% endblock %}
 
 {% block content %}
 <style>
@@ -15,7 +15,20 @@
     }
 
 </style>
+<h4>Training</h4>
+    <a href="{{ url_for('admin.download', filename='intents_Example.json', src='src') }}">Example of script file</a>
+<br>
+<br>
+    <form method="post" enctype ="multipart/form-data">
+        <input type="file" name="intent_file" >
+        <input type="submit" name="submit" value="submit">
+        <br>
+        <br>
+        <input type="submit" name="train" value="train">
+    </form>
+<br>
     <div class="container">
+        <h4>Testing Chatbot</h4>
     <div class="chatbox">
         <div class="chatbox__support">
 

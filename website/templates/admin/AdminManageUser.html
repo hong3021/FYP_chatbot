@@ -1,6 +1,6 @@
-{% extends "adminBase.html" %}
-{% block title %}Dashboard{% endblock %}
-{% block title2 %}Dashboard{% endblock %}
+{% extends "admin/adminBase.html" %}
+{% block title %}Manage_user{% endblock %}
+{% block title2 %}User Setting{% endblock %}
 
 {% block content %}
 <style>
@@ -26,7 +26,7 @@
 
             <tr>
               <td>{{ user.id }}</td>
-              <td>{{ user.email }}</td>
+              <td><a href="{{ url_for('admin.view_chatlog', user_id=user.id) }}">{{ user.email }}</a></td>
               <td>{{ user.first_name }}</td>
               <td>{{ user.role }}</td>
               <td><button class="btn btn-danger center" type="submit" name="delete" value="{{  user.id  }}"><span class="glyphicon glyphicon-trash"></span> Delete</button></td>
