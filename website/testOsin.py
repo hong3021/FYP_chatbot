@@ -9,4 +9,5 @@ command = False
 
 api = osint.Osintgram(targetID, file, json, command, output, cookies)
 
-api.get_user_info()
+addresses = api.get_addrs()
+

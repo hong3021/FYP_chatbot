@@ -1,0 +1,18 @@
+{"intents": [
+  {"tag":  "greeting",
+  "patterns": ["hello", "hi", "Hey", "yo", "what's up" ],
+  "responses": ["Hello", "hey", "yo", "whatsup", "Apa khabar"]
+  },
+  {"tag":  "name",
+  "patterns": ["what is your name", "what should I call you ", "whats your name", "who are you", "Can you tell me your name"],
+  "responses": ["You can call me Xler", "Im Xler", "Xler", "People call me Xler", "My name is Xler", "my author call me Xler", "My father call me Xler" ]
+  },
+  {"tag":  "goodbye",
+  "patterns": ["see ya", "bye", "cya", "Goodbye"],
+  "responses": ["byeee~", "see you next time", "byebye", "(^.^)/", "see ya", "shuting down .... "]
+  }, ,
+  {"tag":  "intelligent",
+  "patterns": ["Do you have intelligent", "intelligent?"],
+  "responses": ["Maybe no, all is engine by code", "My father said no..."]
+  }
+]}
