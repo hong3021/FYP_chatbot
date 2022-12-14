@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for, flash, Flask, send_from_directory, send_file
-from jinja2 import UndefinedError
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 from website.chatbot import response_message
 from website.training import train
@@ -36,13 +38,67 @@ def manage_user():
         return redirect(url_for('views.home'))
 
     if request.method == 'POST':
-        
+        if request.form.get('delete'):
 
-        delete = request.form.get('delete')
-        x = db.session.query(User).get(delete)
-        db.session.delete(x)
-        db.session.commit()
-        flash('User Deleted', category='success')
+            delete = request.form.get('delete')
+            x = db.session.query(User).get(delete)
+            db.session.delete(x)
+            db.session.commit()
+            flash('User Deleted', category='success')
+        if request.form.get('send_email'):
+
+            port = 587  # For starttls
+            smtp_server = "smtp.gmail.com"
+
+            # receiver_email = request.form.get('send_email')
+            receiver_email = "wongjh20103@gmail.com"
+
+            sender_email = "wongjh-wm19@student.tarc.edu.my"
+            password = "010317060239"
+
+            try:
+
+                # TODO: Send email here
+
+                message = MIMEMultipart("alternative")
+                message["Subject"] = "multipart test"
+                message["From"] = sender_email
+                message["To"] = receiver_email
+
+                text = """\
+                Hi,
+                How are you?
+                Real Python has many great tutorials:
+                www.realpython.com"""
+                html = """\
+                <html>
+                  <body>
+                    <p>Hi,<br>
+                       How are you? there Free update for member<br>
+                       Please checkout <a href="http://127.0.0.1:5000">our page</a> to view more
+                    </p>
+                  </body>
+                </html>
+                """
+                # part1 = MIMEText(text, "plain")
+                part2 = MIMEText(html, "html")
+
+                # message.attach(part1)
+                message.attach(part2)
+
+                context = ssl.create_default_context()
+                with smtplib.SMTP(smtp_server, port) as server:
+                    server.ehlo()  # Can be omitted
+                    server.starttls(context=context)
+                    server.ehlo()  # Can be omitted
+                    server.login(sender_email, password)
+                    server.sendmail(sender_email, receiver_email, message.as_string())
+                    flash('Email sent', category='success')
+
+            except Exception as e:
+                # Print any error messages to stdout
+                flash(e, category='error')
+
     users = User.query.all()
 
     return render_template('admin/AdminManageUser.html', users=users)

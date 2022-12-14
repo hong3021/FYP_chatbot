@@ -29,7 +29,11 @@
               <td><a href="{{ url_for('admin.view_chatlog', user_id=user.id) }}">{{ user.email }}</a></td>
               <td>{{ user.first_name }}</td>
               <td>{{ user.role }}</td>
-              <td><button class="btn btn-danger center" type="submit" name="delete" value="{{  user.id  }}"><span class="glyphicon glyphicon-trash"></span> Delete</button></td>
+              <td>
+                  <button class="btn btn-danger center" type="submit" name="delete" value="{{  user.id  }}"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                  <button class="btn btn-danger center" type="submit" name="send_email" value="{{  user.email  }}"><span class="glyphicon glyphicon-trash"></span> Send Email</button>
+
+              </td>
             </tr>
           {% endfor %}
            </form>
