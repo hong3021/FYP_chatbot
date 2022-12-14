@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+<div class="about-section">
+  <h1>Disclaimers</h1>
+    <p>Wanna discover more? Stay with us !!</p>
+    <p>Mexchat is not affiliated with Instagram™. We do not host any Instagram content. All rights belong to their respective owners. </p>
+</div>
+
+<style>
+   body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: black;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+</style>
+
+<h2 style="text-align:center">Founders</h2>
+
+  <div class="column">
+    <div class="card">
+          <img src="{{ url_for('static', filename='images/output/wongjh20103_propic.jpg') }}" style="width:100%" alt="">
+      <div class="container">
+        <h2>James</h2>
+        <p class="title">CEO</p>
+        <p>The founder of Social Media Chatbot.</p>
+        <p>James133@gmail.com</p>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+ <img src="{{ url_for('static', filename='images/output/chongz_024_propic.jpg') }}" style="width:100%"  alt="">
+      <div class="container">
+        <h2>Chong</h2>
+        <p class="title">Designer</p>
+        <p>Co-founder of Social Media Chatbot and designer of the main platform</p>
+        <p>chong2401@gmail.com</p>
+
+      </div>
+    </div>
+  </div>
+
+ <div class="column">
+    <div class="card">
+       <img src="{{ url_for('static', filename='images/output/daniellyy05_propic.jpg') }}" style="width:100%"  alt="">
+      <div class="container">
+        <h2>Daniel</h2>
+        <p class="title">Designer</p>
+        <p>Co-founder of Social Media Chatbot and designer of the main platform</p>
+        <p>Daniel401@gmail.com</p>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
