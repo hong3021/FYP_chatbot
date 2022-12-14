@@ -146,7 +146,7 @@ def signup():
         elif len(password2) < 8:
             flash("invalid password", category='error')
         else:
-            new_user = User(email=email, first_name=firstName, role='admin', password=generate_password_hash(password1, method='sha256'))
+            new_user = User(email=email, first_name=firstName, role='user', password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             flash('Account Created', category='success')

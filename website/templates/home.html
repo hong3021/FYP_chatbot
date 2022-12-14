@@ -1,42 +1,83 @@
 {% extends "base.html" %}
-{% block title %}Home2{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
-
+.home-quarter img:hover{opacity: 0.6; transition: 0.3s}
+.home-quarter img{margin-bottom: -6px; cursor: pointer}
 </style>
-    <h1>THis is homepage</h1>
-<!--    contanier-->
 
-    <div class="container">
-    <div class="chatbox">
-        <div class="chatbox__support">
-            <div class="chatbox__header">
-                <div class="chatbox__image--header">
-                    <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="image">
-                </div>
-                <div class="chatbox__content--header">
-                    <h4 class="chatbox__heading--header">Chat support</h4>
-                    <p class="chatbox__description--header">Hi. My name is XLER. How can I help you?</p>
-                </div>
-            </div>
-            <div class="chatbox__messages">
-                <div></div>
-            </div>
-            <div class="chatbox__footer">
-                <input type="text" placeholder="Write a message...">
-                <button class="chatbox__send--footer send__button">Send</button>
-            </div>
-        </div>
-        <div class="chatbox__button">
-            <button><img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" /></button>
-        </div>
+<body style="background-color:Grey;">
+
+<br>
+<h1>News Feed</h1>
+
+<!-- !PAGE CONTENT! -->
+<div class="home-main home-content" style="max-width:1600px;margin-top:83px">
+
+  <!-- Photo grid -->
+
+    <div class="home-quarter">
+     <img src="{{ url_for('static', filename='images/Lunch.jpg') }}" style="width:30%" onclick="onClick(this)" alt="Time for dinner">
+        <img src="{{ url_for('static', filename='images/Holiday.jpg') }}" style="width:30%" onclick="onClick(this)" alt="Redang yeaaaa">
+         <img src="{{ url_for('static', filename='images/shirt.jpg') }}" style="width:30%" onclick="onClick(this)" alt="Colour Satisfy :D">
+   </div>
+
+
+    <div class="home-quarter">
+     <img src="{{ url_for('static', filename='images/jackiechan_propic.jpg') }}" style="width:30%" onclick="onClick(this)" alt="Smile will always fill your heart.">
+       <img src="{{ url_for('static', filename='images/gordon.jpg') }}" style="width:30%" onclick="onClick(this)" alt="Where is my lamb sauce? Haha">
+         <img src="{{ url_for('static', filename='images/jackiechan.jpg') }}" style="width:30%" onclick="onClick(this)" alt="Catchup with my old friend">
+   </div>
+
+
+    <div class="home-quarter">
+     <img src="{{ url_for('static', filename='images/gather.jpg') }}" style="width:30%" onclick="onClick(this)" alt="Music Hangout~">
+       <img src="{{ url_for('static', filename='images/johncena.jpg') }}" style="width:30%" onclick="onClick(this)" alt="Sweat More , Gain More">
+         <img src="{{ url_for('static', filename='images/graduate.jpg') }}" style="width:30%" onclick="onClick(this)" alt="Graduate">
+   </div>
+
+  <!-- Pagination -->
+
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
     </div>
-</div>
+  </div>
+
+
+
+
 
     <script>
         $SCRIPT_ROOT = {{ request.script_root|tojson }};
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='search.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+    <script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+</script>
 {% endblock %}
