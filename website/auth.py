@@ -40,8 +40,8 @@ def reset_password():
         port = 587  # For starttls
         smtp_server = "smtp.gmail.com"
 
-        sender_email = "wongjh-wm19@student.tarc.edu.my"
-        password = "010317060239"
+        sender_email = ""
+        password = ""
         user_id = User.query.filter_by(email=receiver_email).first()
         if user_id is None:
             flash("Email not exits", category='error')
