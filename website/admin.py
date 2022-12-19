@@ -51,10 +51,10 @@ def manage_user():
             smtp_server = "smtp.gmail.com"
 
             # receiver_email = request.form.get('send_email')
-            receiver_email = "wongjh20103@gmail.com"
+            receiver_email = ""
 
-            sender_email = "wongjh-wm19@student.tarc.edu.my"
-            password = "010317060239"
+            sender_email = ""
+            password = ""
 
             try:
 
