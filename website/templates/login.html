@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Home2{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
@@ -60,11 +60,13 @@
 
 
 
+
 <main class="form-signin w-100 m-auto">
   <br>
   <br>
   <form method="post">
-    <img class="mb-4" src="{{ url_for('static', filename='images/RobotcatLOGO.png') }}" alt="" width="80%" height="60%">
+    <img class="mb-4" src="{{ url_for('static', filename='images/robot.jpg') }}" alt="" width="80%" height="60%">
+      <h1>RoboChat</h1>
     <h1 class="h4 mb-3 fw-normal">Sign in</h1>
 
     <div class="form-floating">
@@ -77,15 +79,23 @@
       <label for="email">Password</label>
     </div>
 
+         <a href="/auth/reset_password">Forgot Password?</a>
+      <br>
 <!--    <div class="checkbox mb-3">-->
 <!--      <label>-->
 <!--        <input type="checkbox" value="remember-me"> Remember me-->
 <!--      </label>-->
 <!--    </div>-->
     <br>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-      <a href="/auth/reset_password">forgot password?</a>
-    <p class="mt-5 mb-3 text-muted">&copy; mecXchat 2017–2022</p>
+
+    <div class="container">
+        <input type="Submit" onclick="window.location.href='slideVerification.py';" class="" value="Login Now"/>
+    </div>
+
+
+
+
+    <p class="mt-5 mb-3 text-muted">&copy; RoboChat 2017–2022</p>
 
   </form>
 </main>
